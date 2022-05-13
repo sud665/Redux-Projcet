@@ -9,7 +9,7 @@ assignees: sud665
 
 ### ISSUE
 - Group:  `Client`
-- Type: `bug`, `feature`, `delete`
+- Type: `bug`, `feature`, `delete`, `layout`
 - Detail: fix actions from client redux
 
 ### TODO
