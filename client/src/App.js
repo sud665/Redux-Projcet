@@ -1,10 +1,11 @@
-import logo from "./logo.svg";
 import "./App.css";
+
+import Adminpage from "./pages/Adminpage";
 
 function App() {
   return (
     <div className="App">
-      <h1>과제물</h1>
+      <Adminpage />
     </div>
   );
 }
