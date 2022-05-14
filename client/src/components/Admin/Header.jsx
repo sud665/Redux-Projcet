@@ -17,7 +17,7 @@ export default function Header() {
 }
 const Container = styled.div`
   width: 100%;
-  height: 60px;
+  padding: 10px 10px 10px 10px;
   border-bottom: 1px solid black;
 `;
 
@@ -25,17 +25,18 @@ const HeaderBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
 `;
 
 const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 60px;
   height: 30px;
   background: tomato;
   text-align: center;
   color: white;
   font-weight: bold;
-  padding-top: 10px;
   cursor: pointer;
   margin-left: 5px;
   border-radius: 2px;

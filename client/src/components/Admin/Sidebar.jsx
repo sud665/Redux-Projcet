@@ -16,8 +16,8 @@ export default function Sidebar() {
   );
 }
 const Container = styled.div`
+  box-sizing: border-box;
   width: 135px;
-  height: 100vh;
   border-right: 1px solid black;
   display: flex;
   flex-direction: column;

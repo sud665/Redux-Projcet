@@ -18,6 +18,7 @@ export default function Adminpage() {
 
 const Container = styled.div`
   width: 100%;
+  height: 100vh;
 `;
 
 const MiddleBox = styled.div`

@@ -1,15 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ButtonEditor from "./ButtonEditor";
 import ParagraphEditor from "./ParagraphEditor";
 
 export default function Canvas() {
+  //*마우스 상태 변경 함수
+  const [mousePosition, setMousePostion] = useState({ x: 0, y: 0 });
+  
+  //*마우스 위치 확인 
+  const setMousePosition = (e) => {
+    let rect = e.target.getBoundingClientRect();
+    console.log("1", e.clientX);
+    console.log("2", rect);
+    let x = parseInt(e.clientX - rect.left);
+    let y = Math.floor(e.clientY - rect.top);
+    if (x < 0 || y < 0) {
+      x = 0;
+      y = 0;
+    }
+    setMousePostion({ x, y });
+  };
+
+  
+
+
   return (
     <>
       <Container>
-        <CanvasBox>
+        <CanvasBox
+          onMouseMove={setMousePosition}
+          onMouseLeave={setMousePosition}
+        >
           <TextBox>
-            <Text>Mouse:(160,11)</Text>
+            <Text>
+              Mouse:({mousePosition.x}, {mousePosition.y})
+            </Text>
             <Text>Dragging:</Text>
             <Text>Instances:</Text>
             <Text>Config:{}</Text>
@@ -24,8 +49,9 @@ export default function Canvas() {
   );
 }
 const Container = styled.div`
-  width: 100%;
-  height: 100vh;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;: ;
   display: flex;
   flex-direction: column;
 `;
