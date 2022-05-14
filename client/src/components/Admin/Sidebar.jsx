@@ -4,16 +4,19 @@ import styled from "styled-components";
 import { setChoiceIcon } from "../../store/choiceIconSlice";
 
 export default function Sidebar() {
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  //* 드래그 시작시 선택한 요소 Dragging 변경
+  const handleDragStart = (e) => {
+    dispatch(setChoiceIcon(e));
+  };
 
   return (
     <Container>
       <DragBox
         draggable={true}
         //드래그
-        onDragStart={() => {
-          dispatch(setChoiceIcon("Paragraph"));
-        }}
+        onDragStart={() => handleDragStart("Paragraph")}
         onDragEnd={() => {
           dispatch(setChoiceIcon(""));
         }}
@@ -23,9 +26,7 @@ export default function Sidebar() {
       </DragBox>
       <DragBox
         draggable={true}
-        onDragStart={() => {
-          dispatch(setChoiceIcon("Button"));
-        }}
+        onDragStart={() => handleDragStart("Button")}
         onDragEnd={() => {
           dispatch(setChoiceIcon(""));
         }}

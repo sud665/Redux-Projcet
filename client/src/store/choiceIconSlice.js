@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//* 드래그 시작된 항목 변경
+//* 드래그 시작
 
 let choiceIcon = createSlice({
   name: "choiceIcon",
