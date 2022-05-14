@@ -9,16 +9,25 @@ export default function Sidebar() {
   return (
     <Container>
       <DragBox
-        onClick={() => {
+        draggable={true}
+        //드래그
+        onDragStart={() => {
           dispatch(setChoiceIcon("Paragraph"));
+        }}
+        onDragEnd={() => {
+          dispatch(setChoiceIcon(""));
         }}
       >
         <Iconbox></Iconbox>
         <Textbox>Paragraph</Textbox>
       </DragBox>
       <DragBox
-        onClick={() => {
+        draggable={true}
+        onDragStart={() => {
           dispatch(setChoiceIcon("Button"));
+        }}
+        onDragEnd={() => {
+          dispatch(setChoiceIcon(""));
         }}
       >
         <Iconbox></Iconbox>
@@ -45,6 +54,9 @@ const DragBox = styled.div`
   cursor: pointer;
   padding: 10px 0 10px;
   justify-content: center;
+  &:hover {
+    background-color: rgb(200, 200, 200);
+  }
 `;
 
 const Iconbox = styled.div`
