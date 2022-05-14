@@ -1,14 +1,26 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { setChoiceIcon } from "../../store/choiceIconSlice";
 
 export default function Sidebar() {
+  let dispatch = useDispatch();
+
   return (
     <Container>
-      <DragBox>
+      <DragBox
+        onClick={() => {
+          dispatch(setChoiceIcon("Paragraph"));
+        }}
+      >
         <Iconbox></Iconbox>
         <Textbox>Paragraph</Textbox>
       </DragBox>
-      <DragBox>
+      <DragBox
+        onClick={() => {
+          dispatch(setChoiceIcon("Button"));
+        }}
+      >
         <Iconbox></Iconbox>
         <Textbox>Button</Textbox>
       </DragBox>

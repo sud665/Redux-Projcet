@@ -1,17 +1,20 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import ButtonEditor from "./ButtonEditor";
 import ParagraphEditor from "./ParagraphEditor";
 
 export default function Canvas() {
-  //*마우스 상태 변경 함수
+  //* 마우스 상태 변경 함수
   const [mousePosition, setMousePostion] = useState({ x: 0, y: 0 });
-  
-  //*마우스 위치 확인 
+
+  //* 선택한 기능 상태 변경
+  let choiceIcon = useSelector((state) => state.choiceIcon);
+  console.log(choiceIcon);
+
+  //* 마우스 위치 확인
   const setMousePosition = (e) => {
     let rect = e.target.getBoundingClientRect();
-    console.log("1", e.clientX);
-    console.log("2", rect);
     let x = parseInt(e.clientX - rect.left);
     let y = Math.floor(e.clientY - rect.top);
     if (x < 0 || y < 0) {
@@ -20,9 +23,6 @@ export default function Canvas() {
     }
     setMousePostion({ x, y });
   };
-
-  
-
 
   return (
     <>
@@ -35,7 +35,7 @@ export default function Canvas() {
             <Text>
               Mouse:({mousePosition.x}, {mousePosition.y})
             </Text>
-            <Text>Dragging:</Text>
+            <Text>Dragging:{choiceIcon}</Text>
             <Text>Instances:</Text>
             <Text>Config:{}</Text>
           </TextBox>
