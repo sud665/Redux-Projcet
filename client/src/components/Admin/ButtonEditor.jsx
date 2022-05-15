@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 export default function ButtonEditor() {
+  const editorElment = useSelector((state) => state.config);
+
+  console.log("이거 맞안?", editorElment);
+
   return (
     <>
       <Title>Button Text</Title>
-      <Input></Input>
+      <Input type="text" />
       <Title>Alert Text</Title>
       <Input></Input>
     </>

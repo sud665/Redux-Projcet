@@ -4,20 +4,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let config = createSlice({
   name: "config",
-  initialState: [
-    {
-      id: 0,
-      component: "",
-      props: {
-        text: "",
-        message: "",
-      },
-    },
-  ],
+  initialState: [],
   reducers: {
-    setConfig(state, action) {
+    addConfig(state, action) {
       let newElement = {
-        id: 1,
+        id: Date.now(),
         component: action.payload,
         props: {
           text: "",
@@ -26,9 +17,13 @@ let config = createSlice({
       };
       return [...state, newElement];
     },
+    editConfig(state, action) {
+      let choiceID = state.findIndex((el) => el.id === action.payload);
+      state[choiceID].props.text = "이거선택했어";
+    },
   },
 });
 
-export let { setConfig } = config.actions;
+export let { addConfig, editConfig } = config.actions;
 
 export default config;

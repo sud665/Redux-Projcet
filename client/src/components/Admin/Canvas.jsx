@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ButtonEditor from "./ButtonEditor";
 import ParagraphEditor from "./ParagraphEditor";
 import ConsumerDisplay from "./ConsumerDisplay";
-import { setConfig } from "../../store/configSlice";
+import { addConfig } from "../../store/configSlice";
 
 export default function Canvas() {
   //* 마우스 상태 변경 함수
@@ -27,7 +27,7 @@ export default function Canvas() {
     setMousePostion({ x, y });
   };
 
-  //* 드롭다운시 요소 선택
+  //* 드롭다운시 요소 핸들러 함수
   const handleDropDown = (e) => {
     e.preventDefault();
     handleChangeElement();
@@ -35,8 +35,12 @@ export default function Canvas() {
 
   //* 드롭다운후 캔버스에 요소 추가
   const handleChangeElement = () => {
-    dispatch(setConfig(choiceElement.choiceIcon));
+    dispatch(addConfig(choiceElement.choiceIcon));
   };
+
+  //* 선택된 config 랜더링 함수
+
+  console.log(JSON.stringify(choiceElement.config[0]));
 
   return (
     <Container>
@@ -56,13 +60,13 @@ export default function Canvas() {
             Mouse:({mousePosition.x}, {mousePosition.y})
           </Text>
           <Text>Dragging: {choiceElement.choiceIcon}</Text>
-          <Text>Instances: {}</Text>
-          <Text>Config:{}</Text>
+          <Text>Instances: {choiceElement.config.length}</Text>
+          <Text>Config:{JSON.stringify(choiceElement.config[0])}</Text>
         </TextBox>
       </CanvasBox>
       <EditorBox>
-        <ButtonEditor />
-        <ParagraphEditor />
+        {choiceElement.clickElementSlice === "Button" && <ButtonEditor />}
+        {choiceElement.clickElementSlice === "Paragraph" && <ParagraphEditor />}
       </EditorBox>
     </Container>
   );

@@ -36,7 +36,7 @@ const Button = styled.div`
   background: tomato;
   text-align: center;
   color: white;
-  font-weight: bold;
+  font-weight: 500;
   cursor: pointer;
   margin-left: 5px;
   border-radius: 2px;
