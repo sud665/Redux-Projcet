@@ -9,13 +9,23 @@ let config = createSlice({
       id: 0,
       component: "",
       props: {
-        text: "버튼텍스트",
-        message: "알람메시지",
+        text: "",
+        message: "",
       },
     },
   ],
   reducers: {
-    setConfig(state, action) {},
+    setConfig(state, action) {
+      let newElement = {
+        id: 1,
+        component: action.payload,
+        props: {
+          text: "",
+          message: "",
+        },
+      };
+      return [...state, newElement];
+    },
   },
 });
 

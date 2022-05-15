@@ -1,8 +1,10 @@
-import React, { useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import ButtonEditor from "./ButtonEditor";
 import ParagraphEditor from "./ParagraphEditor";
+import ConsumerDisplay from "./ConsumerDisplay";
+import { setConfig } from "../../store/configSlice";
 
 export default function Canvas() {
   //* 마우스 상태 변경 함수
@@ -11,7 +13,7 @@ export default function Canvas() {
   //* 선택한 기능 상태 변경
   const choiceElement = useSelector((state) => state);
 
-  console.log("선택된거", choiceElement.config);
+  const dispatch = useDispatch();
 
   //* 마우스 위치 확인
   const setMousePosition = (e) => {
@@ -25,41 +27,47 @@ export default function Canvas() {
     setMousePostion({ x, y });
   };
 
-  //* 드롭다운시 요소 생성
+  //* 드롭다운시 요소 선택
   const handleDropDown = (e) => {
-    console.log("드랍다운후", e);
     e.preventDefault();
+    handleChangeElement();
+  };
+
+  //* 드롭다운후 캔버스에 요소 추가
+  const handleChangeElement = () => {
+    dispatch(setConfig(choiceElement.choiceIcon));
   };
 
   return (
-    <>
-      <Container>
-        <CanvasBox
-          onMouseMove={setMousePosition}
-          onMouseLeave={setMousePosition}
-          onDragOver={(e) => {
-            e.preventDefault();
-          }}
-          onDrop={handleDropDown}
-        >
-          <DisplayBox></DisplayBox>
-          <TextBox>
-            <Text>
-              Mouse:({mousePosition.x}, {mousePosition.y})
-            </Text>
-            <Text>Dragging: {choiceElement.choiceIcon}</Text>
-            <Text>Instances:</Text>
-            <Text>Config:{}</Text>
-          </TextBox>
-        </CanvasBox>
-        <EditorBox>
-          <ButtonEditor />
-          <ParagraphEditor />
-        </EditorBox>
-      </Container>
-    </>
+    <Container>
+      <CanvasBox
+        onMouseMove={setMousePosition}
+        onMouseLeave={setMousePosition}
+        onDragOver={(e) => {
+          e.preventDefault();
+        }}
+        onDrop={handleDropDown}
+      >
+        <DisplayBox>
+          <ConsumerDisplay />
+        </DisplayBox>
+        <TextBox>
+          <Text>
+            Mouse:({mousePosition.x}, {mousePosition.y})
+          </Text>
+          <Text>Dragging: {choiceElement.choiceIcon}</Text>
+          <Text>Instances: {}</Text>
+          <Text>Config:{}</Text>
+        </TextBox>
+      </CanvasBox>
+      <EditorBox>
+        <ButtonEditor />
+        <ParagraphEditor />
+      </EditorBox>
+    </Container>
   );
 }
+
 const Container = styled.div`
   box-sizing: border-box;
   width: 100%;
@@ -92,12 +100,11 @@ const EditorBox = styled.div`
 `;
 
 const DisplayBox = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   position: absolute;
   z-index: 1;
-  width: 100%;
-  text-align: center;
+  align-items: center;
   margin-top: 20px;
-  >button.
 `;
