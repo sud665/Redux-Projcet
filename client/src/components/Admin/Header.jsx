@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 export default function Header() {
+  //* 현재 작성된 구성 요소 로컬스토리지에 저장하기
+
   return (
     <Container>
       <HeaderBox>
