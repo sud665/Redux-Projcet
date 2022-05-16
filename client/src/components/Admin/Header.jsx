@@ -1,18 +1,31 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { handleLocals, handleUndo, handleRedo } from "../Utility/save";
 
 export default function Header() {
-  //* 현재 작성된 구성 요소 로컬스토리지에 저장하기
+  //* view 페이지로 이동
+  const navigate = useNavigate();
+
+  //* 현재 만들어진 구성요소 가져오기
+  const selectData = useSelector((state) => state.config);
 
   return (
     <Container>
       <HeaderBox>
-        <Button>Save</Button>
+        <Button onClick={() => handleLocals(selectData)}>Save</Button>
         <Button>Undo</Button>
         <Button>Redo</Button>
         <Button>Export</Button>
         <Button>Import</Button>
-        <Button>View</Button>
+        <Button
+          onClick={() => {
+            navigate("/consumer");
+          }}
+        >
+          View
+        </Button>
       </HeaderBox>
     </Container>
   );
