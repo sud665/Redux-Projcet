@@ -60,7 +60,6 @@ const Container = styled.div`
 
 const Button = styled.button`
   margin-top: 10px;
-  type: button;
   background: white;
   cursor: pointer;
 `;

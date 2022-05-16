@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { handleLocals, handleUndo, handleRedo } from "../Utility/save";
+import { handleLocals, handleUndo, handleRedo } from "../Utility/Utility";
 
 export default function Header() {
   //* view 페이지로 이동
@@ -48,11 +48,17 @@ const Button = styled.div`
   align-items: center;
   width: 60px;
   height: 30px;
-  background: tomato;
+  background: none;
   text-align: center;
-  color: white;
+  color: tomato;
+  border: 1px solid tomato;
   font-weight: 500;
   cursor: pointer;
   margin-left: 5px;
-  border-radius: 2px;
+  border-radius: 5px;
+  &:hover {
+    color: white;
+    background: tomato;
+    transition: 0.3s;
+  }
 `;

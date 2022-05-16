@@ -13,5 +13,5 @@ export default function Consumerpage() {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background: tomato;
+  background: #eee;
 `;
