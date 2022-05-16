@@ -1,3 +1,5 @@
+/* eslint-disable*/
+
 import { createSlice } from "@reduxjs/toolkit";
 
 //* 드래그 시작된 항목 변경
@@ -7,23 +9,45 @@ let config = createSlice({
   initialState: [],
   reducers: {
     addConfig(state, action) {
-      let newElement = {
-        id: Date.now(),
-        component: action.payload,
-        props: {
-          text: "",
-          message: "",
-        },
-      };
-      return [...state, newElement];
+      if (action.payload === "Button") {
+        let newElement = {
+          id: Date.now(),
+          component: action.payload,
+          props: {
+            text: "Button",
+            message: "",
+          },
+        };
+        return [...state, newElement];
+      }
+      if (action.payload === "Paragraph") {
+        let newElement = {
+          id: Date.now(),
+          component: action.payload,
+          props: {
+            text: "Paragraph",
+          },
+        };
+        return [...state, newElement];
+      }
     },
-    editConfig(state, action) {
-      let choiceID = state.findIndex((el) => el.id === action.payload);
-      state[choiceID].props.text = "이거선택했어";
+    editParagraphConfig(state, action) {
+      state[action.payload.id].props.text = action.payload.target;
+    },
+    editButtonConfig(state, action) {
+      state[action.payload.id].props.text = action.payload.target;
+    },
+    editButtonMSGConfig(state, action) {
+      state[action.payload.id].props.message = action.payload.target;
     },
   },
 });
 
-export let { addConfig, editConfig } = config.actions;
+export let {
+  addConfig,
+  editParagraphConfig,
+  editButtonConfig,
+  editButtonMSGConfig,
+} = config.actions;
 
 export default config;

@@ -7,13 +7,16 @@ import ConsumerDisplay from "./ConsumerDisplay";
 import { addConfig } from "../../store/configSlice";
 
 export default function Canvas() {
+  const dispatch = useDispatch();
+
   //* 마우스 상태 변경 함수
   const [mousePosition, setMousePostion] = useState({ x: 0, y: 0 });
 
-  //* 선택한 기능 상태 변경
-  const choiceElement = useSelector((state) => state);
+  //* 선택한 요소의 아이디 값 상태끌어올리기
+  const [choiceID, setChoiceID] = useState(null);
 
-  const dispatch = useDispatch();
+  //* 스토어에서 전역상태 값 가져오기
+  const choiceElement = useSelector((state) => state);
 
   //* 마우스 위치 확인
   const setMousePosition = (e) => {
@@ -38,10 +41,6 @@ export default function Canvas() {
     dispatch(addConfig(choiceElement.choiceIcon));
   };
 
-  //* 선택된 config 랜더링 함수
-
-  console.log(JSON.stringify(choiceElement.config[0]));
-
   return (
     <Container>
       <CanvasBox
@@ -53,7 +52,7 @@ export default function Canvas() {
         onDrop={handleDropDown}
       >
         <DisplayBox>
-          <ConsumerDisplay />
+          <ConsumerDisplay setChoiceID={setChoiceID} />
         </DisplayBox>
         <TextBox>
           <Text>
@@ -61,12 +60,16 @@ export default function Canvas() {
           </Text>
           <Text>Dragging: {choiceElement.choiceIcon}</Text>
           <Text>Instances: {choiceElement.config.length}</Text>
-          <Text>Config:{JSON.stringify(choiceElement.config[0])}</Text>
+          <Text>Config: {JSON.stringify(choiceElement.config[choiceID])}</Text>
         </TextBox>
       </CanvasBox>
       <EditorBox>
-        {choiceElement.clickElementSlice === "Button" && <ButtonEditor />}
-        {choiceElement.clickElementSlice === "Paragraph" && <ParagraphEditor />}
+        {choiceElement.clickElementSlice === "Button" && (
+          <ButtonEditor choiceID={choiceID} />
+        )}
+        {choiceElement.clickElementSlice === "Paragraph" && (
+          <ParagraphEditor choiceID={choiceID} />
+        )}
       </EditorBox>
     </Container>
   );
@@ -91,7 +94,7 @@ const TextBox = styled.div`
   position: absolute;
   margin-top: 30px;
   margin-left: 10px;
-  z-index: 999;
+  z-index: 1;
 `;
 
 const Text = styled.div`
@@ -108,7 +111,7 @@ const DisplayBox = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  z-index: 1;
+  z-index: 999;
   align-items: center;
   margin-top: 20px;
 `;

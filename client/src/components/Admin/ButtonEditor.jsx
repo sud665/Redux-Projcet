@@ -1,18 +1,55 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { editButtonConfig, editButtonMSGConfig } from "../../store/configSlice";
 
-export default function ButtonEditor() {
-  const editorElment = useSelector((state) => state.config);
+export default function ButtonEditor({ choiceID }) {
+  const dispatch = useDispatch();
 
-  console.log("이거 맞안?", editorElment);
+  //* 선택된 config 가져오기
+  const editorElement = useSelector((state) => state.config[choiceID]);
+
+  //* 버튼 값 상태 변경
+  const [buttonValue, setButtonValue] = useState(editorElement.props.text);
+
+  //* 메세지 값 상태 변경
+  const [messageValue, setMessageValue] = useState(editorElement.props.message);
+
+  //* 버튼요소의 값 핸들러 함수
+  const handleButtonText = useCallback((e) => {
+    let buttonPayload = {
+      id: choiceID,
+      target: e.target.value,
+    };
+
+    setButtonValue(e.target.value);
+    dispatch(editButtonConfig(buttonPayload));
+  }, []);
+
+  //* 알림창 메세지 값 핸들러 함수
+  const handleMessageText = useCallback((e) => {
+    let messagePayload = {
+      id: choiceID,
+      target: e.target.value,
+    };
+    setMessageValue(e.target.value);
+    dispatch(editButtonMSGConfig(messagePayload));
+  }, []);
 
   return (
     <>
       <Title>Button Text</Title>
-      <Input type="text" />
+      <Input
+        name="Button Text"
+        value={buttonValue}
+        onChange={handleButtonText}
+      />
       <Title>Alert Text</Title>
-      <Input></Input>
+      <Input
+        name="Alert Text"
+        value={messageValue}
+        onChange={handleMessageText}
+      />
     </>
   );
 }

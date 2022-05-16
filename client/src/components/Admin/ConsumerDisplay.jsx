@@ -5,14 +5,17 @@ import styled from "styled-components";
 import { editConfig } from "../../store/configSlice";
 import { setClickElement } from "../../store/clickElementSlice";
 
-export default function ConsumerDisplay() {
+export default function ConsumerDisplay({ setChoiceID }) {
   const DisplayStructure = useSelector((state) => state.config);
 
   const dispatch = useDispatch();
 
   //* 선택된 요소의 상태 핸들러 함수
   const handleClickElement = (idx, type) => {
-    dispatch(editConfig(DisplayStructure[idx].id));
+    let choiceID = DisplayStructure.findIndex(
+      (el) => el.id === DisplayStructure[idx].id
+    );
+    setChoiceID(choiceID);
     dispatch(setClickElement(type));
   };
 
@@ -28,7 +31,7 @@ export default function ConsumerDisplay() {
                   handleClickElement(idx, el.component);
                 }}
               >
-                {el.component}
+                {el.props.text}
               </Paragraph>
             );
           case "Button":
@@ -39,7 +42,7 @@ export default function ConsumerDisplay() {
                   handleClickElement(idx, el.component);
                 }}
               >
-                {el.component}
+                {el.props.text}
               </Button>
             );
         }
