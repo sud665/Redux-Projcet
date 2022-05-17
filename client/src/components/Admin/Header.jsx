@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { handleLocals, handleExport } from "../Utility/Utility";
-import { addImportConfig } from "../../store/configSlice";
+import {
+  addImportConfig,
+  selectConfig,
+  pastConfig,
+  futureConfig,
+} from "../../store/configSlice";
 import { ActionCreators } from "redux-undo";
 
 export default function Header() {
@@ -13,9 +18,13 @@ export default function Header() {
   const dispatch = useDispatch();
 
   //* 현재 만들어진 구성요소 가져오기
-  const selectData = useSelector((state) => state.config);
+  const selectData = useSelector(selectConfig);
 
-  const { past, future } = selectData;
+  const pastData = useSelector(pastConfig);
+
+  console.log(pastData);
+
+  const futureData = useSelector(futureConfig);
 
   //* Undo기능
   const handleUndo = () => {
@@ -45,16 +54,12 @@ export default function Header() {
         </Button>
         <Button
           key="Undo"
-          disable={past ? null : "diable"}
+          disable={pastData.length === 0 ? "disable" : null}
           onClick={() => handleUndo()}
         >
           Undo
         </Button>
-        <Button
-          key="Redo"
-          disable={future ? null : "diable"}
-          onClick={() => handleRedo()}
-        >
+        <Button key="Redo" onClick={() => handleRedo()}>
           Redo
         </Button>
         <Button key="Export" onClick={() => handleExport(selectData)}>
@@ -65,7 +70,6 @@ export default function Header() {
           <input
             className="upload"
             type="file"
-            accept="json/*"
             onChange={(e) => handleImport(e)}
           ></input>
         </Label>

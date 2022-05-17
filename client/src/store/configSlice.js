@@ -1,9 +1,8 @@
 /* eslint-disable*/
 import { createSlice } from "@reduxjs/toolkit";
 
-
 //* 드래그 시작된 항목 변경
-let config = createSlice({
+let configSlice = createSlice({
   name: "config",
   initialState: [],
   reducers: {
@@ -45,13 +44,16 @@ let config = createSlice({
   },
 });
 
-export let {
+export const {
   addConfig,
   editParagraphConfig,
   editButtonConfig,
   editButtonMSGConfig,
   addImportConfig,
-} = config.actions;
+} = configSlice.actions;
 
-//* undo 기능 시작
-export default config;
+export const selectConfig = (state) => state.config.present;
+export const pastConfig = (state) => state.config.past;
+export const futureConfig = (state) => state.config.future;
+
+export default configSlice.reducer;

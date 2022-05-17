@@ -3,13 +3,12 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { setClickElement } from "../../store/clickElementSlice";
+import { selectConfig } from "../../store/configSlice";
 
 export default function ConsumerDisplay({ setChoiceID }) {
-  const DisplayStructure = useSelector((state) => state.config);
+  const DisplayStructure = useSelector(selectConfig);
 
   const dispatch = useDispatch();
-
-  
 
   //* 선택된 요소의 상태 핸들러 함수
   const handleClickElement = (idx, type) => {

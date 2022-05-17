@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ButtonEditor from "./ButtonEditor";
 import ParagraphEditor from "./ParagraphEditor";
 import ConsumerDisplay from "./ConsumerDisplay";
-import { addConfig } from "../../store/configSlice";
+import { addConfig, selectConfig } from "../../store/configSlice";
 
 export default function Canvas() {
   const dispatch = useDispatch();
@@ -17,6 +17,8 @@ export default function Canvas() {
 
   //* 스토어에서 전역상태 값 가져오기
   const choiceElement = useSelector((state) => state);
+
+  const canvasElement = useSelector(selectConfig);
 
   //* 마우스 위치 확인
   const setMousePosition = (e) => {
@@ -59,8 +61,8 @@ export default function Canvas() {
             Mouse:({mousePosition.x}, {mousePosition.y})
           </Text>
           <Text>Dragging: {choiceElement.choiceIcon}</Text>
-          <Text>Instances: {choiceElement.config.length}</Text>
-          <Text>Config: {JSON.stringify(choiceElement.config[choiceID])}</Text>
+          <Text>Instances: {canvasElement.length}</Text>
+          <Text>Config: {JSON.stringify(canvasElement[choiceID])}</Text>
         </TextBox>
       </CanvasBox>
       <EditorBox>

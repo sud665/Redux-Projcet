@@ -1,8 +1,7 @@
 /* eslint-disable*/
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+
 
 export default function ConsumerView() {
   //* 로컬스토리지에서 데이터 가져오기

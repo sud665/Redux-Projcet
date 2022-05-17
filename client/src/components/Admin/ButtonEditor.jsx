@@ -1,19 +1,27 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { editButtonConfig, editButtonMSGConfig } from "../../store/configSlice";
+import {
+  editButtonConfig,
+  editButtonMSGConfig,
+  selectConfig,
+} from "../../store/configSlice";
 
 export default function ButtonEditor({ choiceID }) {
   const dispatch = useDispatch();
 
   //* 선택된 config 가져오기
-  const editorElement = useSelector((state) => state.config[choiceID]);
+  const editorElement = useSelector(selectConfig);
 
   //* 버튼 값 상태 변경
-  const [buttonValue, setButtonValue] = useState(editorElement.props.text);
+  const [buttonValue, setButtonValue] = useState(
+    editorElement[choiceID].props.text
+  );
 
   //* 메세지 값 상태 변경
-  const [messageValue, setMessageValue] = useState(editorElement.props.message);
+  const [messageValue, setMessageValue] = useState(
+    editorElement[choiceID].props.message
+  );
 
   //* 버튼요소의 값 핸들러 함수
   const handleButtonText = useCallback((e) => {
@@ -21,7 +29,6 @@ export default function ButtonEditor({ choiceID }) {
       id: choiceID,
       target: e.target.value,
     };
-
     setButtonValue(e.target.value);
     dispatch(editButtonConfig(buttonPayload));
   }, []);
