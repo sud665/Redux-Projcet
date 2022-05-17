@@ -50,7 +50,7 @@ const DragBox = styled.div`
   /* background: tomato; */
   text-align: center;
   align-items: center;
-  cursor: pointer;
+  cursor: grab;
   padding: 10px 0 10px;
   justify-content: center;
   &:hover {

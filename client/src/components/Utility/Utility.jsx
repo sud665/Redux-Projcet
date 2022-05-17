@@ -1,5 +1,3 @@
-// const dispatch = useDispatch();
-
 //* 현재 작성된 구성 요소 로컬스토리지에 저장하기
 const handleLocals = (data) => {
   new Promise((resolve, reject) => {
@@ -10,13 +8,20 @@ const handleLocals = (data) => {
   });
 };
 
-// * import 기능 함수
-const onImport = (e) => {
- 
+//* 마우스 경로 확인 기능 함수 저장
+const setMousePosition = (e) => {
+  let pointer = e.target.getBoundingClientRect();
+  let x = parseInt(e.clientX - pointer.left);
+  let y = parseInt(e.clientY - pointer.top);
+  if (x <= 0 || y <= 0) {
+    x = 0;
+    y = 0;
+  }
+  return { x, y };
 };
 
 //* export 기능 함수
-const onExport = (data) => {
+const handleExport = (data) => {
   if (data) {
     const json = JSON.stringify(data);
     const element = document.createElement("a");
@@ -28,4 +33,4 @@ const onExport = (data) => {
   }
 };
 
-export { handleLocals, onExport, onImport };
+export { handleLocals, handleExport, setMousePosition };

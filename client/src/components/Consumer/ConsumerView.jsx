@@ -58,5 +58,5 @@ const Button = styled.button`
 
 const Paragraph = styled.p`
   margin-top: 10px;
-  cursor: pointer;
+  cursor: not-allowed;
 `;

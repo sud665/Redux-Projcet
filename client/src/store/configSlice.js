@@ -1,6 +1,6 @@
 /* eslint-disable*/
 import { createSlice } from "@reduxjs/toolkit";
-import undoable from "redux-undo";
+
 
 //* 드래그 시작된 항목 변경
 let config = createSlice({
@@ -40,7 +40,7 @@ let config = createSlice({
       state[action.payload.id].props.message = action.payload.target;
     },
     addImportConfig(state, action) {
-      return [...action.payload]
+      return [...action.payload];
     },
   },
 });

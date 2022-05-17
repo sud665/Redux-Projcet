@@ -9,6 +9,8 @@ export default function ConsumerDisplay({ setChoiceID }) {
 
   const dispatch = useDispatch();
 
+  
+
   //* 선택된 요소의 상태 핸들러 함수
   const handleClickElement = (idx, type) => {
     let choiceID = DisplayStructure.findIndex(
