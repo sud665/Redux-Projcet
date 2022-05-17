@@ -39,6 +39,9 @@ let config = createSlice({
     editButtonMSGConfig(state, action) {
       state[action.payload.id].props.message = action.payload.target;
     },
+    addImportConfig(state, action) {
+      return [...action.payload]
+    },
   },
 });
 
@@ -47,7 +50,8 @@ export let {
   editParagraphConfig,
   editButtonConfig,
   editButtonMSGConfig,
+  addImportConfig,
 } = config.actions;
 
 //* undo 기능 시작
-export default undoable(config);
+export default config;
