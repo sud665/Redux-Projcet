@@ -1,24 +1,37 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { handleLocals, handleUndo, handleRedo } from "../Utility/Utility";
+import { useSelector, useDispatch } from "react-redux";
+import { ActionCreators } from "redux-undo";
+import { handleLocals } from "../Utility/Utility";
+import store from "../../store";
 
 export default function Header() {
+  const dispatch = useDispatch();
   //* view 페이지로 이동
   const navigate = useNavigate();
 
   //* 현재 만들어진 구성요소 가져오기
   const selectData = useSelector((state) => state.config);
 
+  //* Undo
+  const handleUndo = () => {
+    console.log("온두 되나?");
+    store.dispatch(ActionCreators.undo());
+  };
+
   return (
     <Container>
       <HeaderBox>
-        <Button onClick={() => handleLocals(selectData)}>Save</Button>
-        <Button>Undo</Button>
-        <Button>Redo</Button>
-        <Button>Export</Button>
-        <Button>Import</Button>
+        <Button key="Save" onClick={() => handleLocals(selectData)}>
+          Save
+        </Button>
+        <Button key="Undo" onClick={() => handleUndo()}>
+          Undo
+        </Button>
+        <Button key="Redo">Redo</Button>
+        <Button key="Export">Export</Button>
+        <Button key="Import">Import</Button>
         <Button
           onClick={() => {
             navigate("/consumer");

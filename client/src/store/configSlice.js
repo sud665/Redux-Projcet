@@ -1,9 +1,8 @@
 /* eslint-disable*/
-
 import { createSlice } from "@reduxjs/toolkit";
+import undoable from "redux-undo";
 
 //* 드래그 시작된 항목 변경
-
 let config = createSlice({
   name: "config",
   initialState: [],
@@ -50,4 +49,5 @@ export let {
   editButtonMSGConfig,
 } = config.actions;
 
-export default config;
+//* undo 기능 시작
+export default undoable(config);

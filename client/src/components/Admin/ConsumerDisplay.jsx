@@ -2,7 +2,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { editConfig } from "../../store/configSlice";
 import { setClickElement } from "../../store/clickElementSlice";
 
 export default function ConsumerDisplay({ setChoiceID }) {

@@ -8,10 +8,4 @@ const handleLocals = (data) => {
   });
 };
 
-//* 현재 Undo 구성 요소 실행 취소
-const handleUndo = () => {};
-
-//* 현재 Undo 구성 요소 되살리기
-const handleRedo = () => {};
-
-export { handleLocals, handleUndo, handleRedo };
+export { handleLocals };
