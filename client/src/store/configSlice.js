@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import { createSlice } from "@reduxjs/toolkit";
 
 //* 드래그 시작된 항목 변경
@@ -24,6 +23,16 @@ let configSlice = createSlice({
           component: action.payload,
           props: {
             text: "Paragraph",
+          },
+        };
+        return [...state, newElement];
+      }
+      if (action.payload === "Image") {
+        let newElement = {
+          id: Date.now(),
+          component: action.payload,
+          props: {
+            Blob: "",
           },
         };
         return [...state, newElement];

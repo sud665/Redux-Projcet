@@ -45,6 +45,17 @@ export default function ConsumerDisplay({ setChoiceID }) {
                 {el.props.text}
               </Button>
             );
+          case "Image":
+            return (
+              <Image
+                key={idx}
+                onClick={() => {
+                  handleClickElement(idx, el.component);
+                }}
+              >
+                {el.props.text}
+              </Image>
+            );
         }
       })}
     </Container>
@@ -67,4 +78,12 @@ const Button = styled.button`
 const Paragraph = styled.p`
   margin-top: 10px;
   cursor: pointer;
+`;
+
+const Image = styled.div`
+  width: 50px;
+  height: 50px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: 1px solid black;
 `;
