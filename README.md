@@ -60,6 +60,9 @@ clinet
     store.js
 ```
 
+### 와이어 프레임
+와이어 프레임(<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FUocMnRgCLBRFcNYsngX84Q%2F%25EC%259A%2594%25EB%25A7%259D%25EC%25A7%2584-%25EC%2597%25B0%25EA%25B5%25AC%25EC%2586%258C-FE-%25EC%2582%25AC%25EC%25A0%2584%25EA%25B3%25BC%25EC%25A0%259C-%25EC%2599%2580%25EC%259D%25B4%25EC%2596%25B4%25ED%2594%2584%25EB%25A0%2588%25EC%259E%2584_%25EC%2584%259C%25EC%2599%25B8%25EA%25B5%25AC%3Fnode-id%3D0%253A1" allowfullscreen></iframe>)
+
 ## Available Scripts
 In the project directory, you can run:
 
