@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { setChoiceIcon } from "../../store/choiceIconSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faParagraph, faSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default function Sidebar() {
   const dispatch = useDispatch();
@@ -17,7 +19,9 @@ export default function Sidebar() {
           dispatch(setChoiceIcon(""));
         }}
       >
-        <Iconbox></Iconbox>
+        <Iconbox>
+          <FontAwesomeIcon icon={faParagraph} />
+        </Iconbox>
         <Textbox>Paragraph</Textbox>
       </DragBox>
       <DragBox
@@ -29,7 +33,9 @@ export default function Sidebar() {
           dispatch(setChoiceIcon(""));
         }}
       >
-        <Iconbox></Iconbox>
+        <Iconbox>
+          <FontAwesomeIcon icon={faSquare} />
+        </Iconbox>
         <Textbox>Button</Textbox>
       </DragBox>
     </Container>
@@ -47,7 +53,6 @@ const Container = styled.div`
 const DragBox = styled.div`
   width: 100%;
   height: 90px;
-  /* background: tomato; */
   text-align: center;
   align-items: center;
   cursor: grab;
@@ -61,8 +66,12 @@ const DragBox = styled.div`
 const Iconbox = styled.div`
   width: 50px;
   height: 50px;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
 `;
 
 const Textbox = styled.div`

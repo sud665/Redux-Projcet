@@ -8,18 +8,6 @@ const handleLocals = (data) => {
   });
 };
 
-//* 마우스 경로 확인 기능 함수 저장
-const setMousePosition = (e) => {
-  let pointer = e.target.getBoundingClientRect();
-  let x = parseInt(e.clientX - pointer.left);
-  let y = parseInt(e.clientY - pointer.top);
-  if (x <= 0 || y <= 0) {
-    x = 0;
-    y = 0;
-  }
-  return { x, y };
-};
-
 //* export 기능 함수
 const handleExport = (data) => {
   if (data) {
@@ -33,4 +21,4 @@ const handleExport = (data) => {
   }
 };
 
-export { handleLocals, handleExport, setMousePosition };
+export { handleLocals, handleExport };

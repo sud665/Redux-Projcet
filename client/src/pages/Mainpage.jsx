@@ -41,7 +41,7 @@ const Container = styled.div`
 `;
 
 const TitleBox = styled.div`
-  margin-top: 100px;
+  margin-top: 80px;
 `;
 
 const Title = styled.h1``;
@@ -50,9 +50,12 @@ const ChoiceBox = styled.div`
   width: 500px;
   height: 500px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 20px;
   align-items: center;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const ChoiceAdminPage = styled.div`

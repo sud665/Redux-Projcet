@@ -1,28 +1,26 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-import { editParagraphConfig, selectConfig } from "../../store/configSlice";
+import { useDispatch } from "react-redux";
+import { editParagraphConfig } from "../../store/configSlice";
 
 export default function ParagraphEditor({ choiceID }) {
   const dispatch = useDispatch();
 
-  //* 선택된 config 가져오기
-  const editorElement = useSelector(selectConfig);
+  //* 선택된 config 가져오기 (잠시 보류)
+  // const editorElement = useSelector(selectConfig);
 
   //* 버튼 값 상태 변경
-  const [paragraphValue, setParagraphValue] = useState(
-    editorElement[choiceID].props.text
-  );
+  const [paragraphValue, setParagraphValue] = useState("Paragraph");
 
   //* 알림창 메세지 값 핸들러 함수
-  const handleParagraphText = (e) => {
+  const handleParagraphText = useCallback((e) => {
     let buttonPayload = {
       id: choiceID,
       target: e.target.value,
     };
     setParagraphValue(e.target.value);
     dispatch(editParagraphConfig(buttonPayload));
-  };
+  }, []);
 
   return (
     <>

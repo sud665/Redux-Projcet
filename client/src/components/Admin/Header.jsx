@@ -20,18 +20,18 @@ export default function Header() {
   //* 현재 만들어진 구성요소 가져오기
   const selectData = useSelector(selectConfig);
 
+  //* 과거 구성요소 가져오기
   const pastData = useSelector(pastConfig);
 
-  console.log(pastData);
-
+  //* 미래 구성요소 가져오기
   const futureData = useSelector(futureConfig);
 
-  //* Undo기능
+  //* Undo기능 함수
   const handleUndo = () => {
     dispatch(ActionCreators.undo());
   };
 
-  //* Undo기능
+  //* Redo기능 함수
   const handleRedo = () => {
     dispatch(ActionCreators.redo());
   };
@@ -54,12 +54,16 @@ export default function Header() {
         </Button>
         <Button
           key="Undo"
-          disable={pastData.length === 0 ? "disable" : null}
+          disabled={pastData.length === 0 ? "disabled" : null}
           onClick={() => handleUndo()}
         >
           Undo
         </Button>
-        <Button key="Redo" onClick={() => handleRedo()}>
+        <Button
+          key="Redo"
+          disabled={futureData.length === 0 ? "disabled" : null}
+          onClick={() => handleRedo()}
+        >
           Redo
         </Button>
         <Button key="Export" onClick={() => handleExport(selectData)}>
@@ -106,6 +110,7 @@ const Button = styled.button`
   font-weight: 500;
   cursor: pointer;
   margin-left: 5px;
+  margin-right: 5px;
   border-radius: 5px;
   &:hover {
     color: white;
@@ -127,6 +132,7 @@ const Label = styled.label`
   font-size: 14px;
   cursor: pointer;
   margin-left: 5px;
+  margin-right: 5px;
   border-radius: 5px;
   &:hover {
     color: white;

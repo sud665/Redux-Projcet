@@ -94,7 +94,7 @@ const CanvasBox = styled.div`
 
 const TextBox = styled.div`
   position: absolute;
-  margin-top: 30px;
+  margin-top: 500px;
   margin-left: 10px;
   z-index: 1;
 `;
