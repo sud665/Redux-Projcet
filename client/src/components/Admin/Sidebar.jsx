@@ -3,7 +3,11 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { setChoiceIcon } from "../../store/choiceIconSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faParagraph, faSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faParagraph,
+  faSquare,
+  faImage,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Sidebar() {
   const dispatch = useDispatch();
@@ -37,6 +41,20 @@ export default function Sidebar() {
           <FontAwesomeIcon icon={faSquare} />
         </Iconbox>
         <Textbox>Button</Textbox>
+      </DragBox>
+      <DragBox
+        draggable={true}
+        onDragStart={() => {
+          dispatch(setChoiceIcon("Image"));
+        }}
+        onDragEnd={() => {
+          dispatch(setChoiceIcon(""));
+        }}
+      >
+        <Iconbox>
+          <FontAwesomeIcon icon={faImage} />
+        </Iconbox>
+        <Textbox>Image</Textbox>
       </DragBox>
     </Container>
   );
