@@ -1,8 +1,6 @@
 # YMJ-pre-task
 요망진연구소 사전과제물 
 
-## 요구사항
-
 ### 내용 :
 
 - FasDeli 기업이 E-Commerce 시장으로 확장예정
@@ -91,4 +89,7 @@ You may also see any lint errors in the console.
 - export & import 기능 
 ![export기능](https://user-images.githubusercontent.com/89363048/168966265-ab351cac-165f-4dcf-be69-ba3986a695f3.gif)
 
+- 이미지 삽입 기능!
+
+![이미지삽입기능](https://user-images.githubusercontent.com/89363048/169554523-1266d45f-ff11-4822-b819-1d090b57a5c4.gif)
 
