@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { editImageConfig } from "../../store/configSlice";
@@ -9,8 +9,13 @@ export default function ImageEditor({ choiceID }) {
   //* 선택된 config 가져오기 (잠시 보류)
   // const editorElement = useSelector(selectConfig);
 
+  //* preview 이미지 상태 수정
+  // const [previewImage, setPreviewImage] = useState(
+  //   editorElement[choiceID].Blob
+  // );
+
   //* 알림창 메세지 값 핸들러 함수
-  const handleParagraphText = useCallback((fileBlob) => {
+  const handleParagraphText = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
     return new Promise((resolve) => {
@@ -19,12 +24,11 @@ export default function ImageEditor({ choiceID }) {
           id: choiceID,
           target: reader.result,
         };
-        console.log("dd", buttonPayload);
         dispatch(editImageConfig(buttonPayload));
         resolve();
       };
     });
-  }, []);
+  };
 
   return (
     <>
