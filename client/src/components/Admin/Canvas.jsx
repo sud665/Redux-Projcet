@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ButtonEditor from "./ButtonEditor";
 import ParagraphEditor from "./ParagraphEditor";
 import ConsumerDisplay from "./ConsumerDisplay";
+import ImageEditor from "./ImageEditor";
 import { addConfig, selectConfig } from "../../store/configSlice";
 
 export default function Canvas() {
@@ -71,6 +72,9 @@ export default function Canvas() {
         )}
         {choiceElement.clickElementSlice === "Paragraph" && (
           <ParagraphEditor choiceID={choiceID} />
+        )}
+        {choiceElement.clickElementSlice === "Image" && (
+          <ImageEditor choiceID={choiceID} />
         )}
       </EditorBox>
     </Container>

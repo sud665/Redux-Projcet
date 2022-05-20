@@ -47,6 +47,9 @@ let configSlice = createSlice({
     editButtonMSGConfig(state, action) {
       state[action.payload.id].props.message = action.payload.target;
     },
+    editImageConfig(state, action) {
+      state[action.payload.id].props.Blob = action.payload.target;
+    },
     addImportConfig(state, action) {
       return [...action.payload];
     },
@@ -59,6 +62,7 @@ export const {
   editButtonConfig,
   editButtonMSGConfig,
   addImportConfig,
+  editImageConfig,
 } = configSlice.actions;
 
 export const selectConfig = (state) => state.config.present;

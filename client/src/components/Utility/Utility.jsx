@@ -21,4 +21,11 @@ const handleExport = (data) => {
   }
 };
 
-export { handleLocals, handleExport };
+//* 이미지 삽입 기능 함수
+const encodeFileTobase64 = (fileBlob) => {
+  const reader = new FileReader();
+  const dd = reader.readAsDataURL(fileBlob);
+  console.log(dd);
+};
+
+export { handleLocals, handleExport, encodeFileTobase64 };
