@@ -53,6 +53,7 @@ export default function ConsumerDisplay({ setChoiceID }) {
                   handleClickElement(idx, el.component);
                 }}
               >
+                <Img src={el.props.Blob} alt="이미지를 입력해주세요" />
                 {el.props.text}
               </Image>
             );
@@ -81,9 +82,15 @@ const Paragraph = styled.p`
 `;
 
 const Image = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 200px;
+  height: 200px;
   margin-top: 10px;
   cursor: pointer;
   border: 1px solid black;
+`;
+
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
